@@ -1,0 +1,12 @@
+services:
+  db_postgres:
+    container_name: db_postgres
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    command: -p 5432
+

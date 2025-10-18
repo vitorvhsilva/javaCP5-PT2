@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Cadastrar Ferramenta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/ferramenta.css}"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 m-0">Cadastrar Ferramenta</h1>
+        <a class="btn btn-outline-secondary" th:href="@{/ferramentas}">Voltar</a>
+    </div>
+
+    <form th:action="@{/ferramentas}" th:object="${ferramenta}" method="post" class="row g-3">
+
+        <input type="hidden" th:if="${_csrf != null}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+        <div class="col-12" th:if="${#fields.hasAnyErrors()}">
+            <div class="alert alert-danger mb-0">Verifique os campos destacados abaixo.</div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="nomeFerramenta" class="form-label">Nome <span class="req">*</span></label>
+            <input id="nomeFerramenta" type="text" class="form-control"
+                   th:classappend="${#fields.hasErrors('nomeFerramenta')} ? ' is-invalid'"
+                   th:field="*{nomeFerramenta}" placeholder="Ex.: Furadeira Bosch 600W" required />
+            <div class="invalid-feedback" th:errors="*{nomeFerramenta}">Mensagem de erro</div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="tipoFerramenta" class="form-label">Tipo <span class="req">*</span></label>
+            <select id="tipoFerramenta" class="form-select"
+                    th:classappend="${#fields.hasErrors('tipoFerramenta')} ? ' is-invalid'"
+                    th:field="*{tipoFerramenta}" required>
+                <option value="">Selecione...</option>
+                <option value="ELETRICA">Elétrica</option>
+                <option value="MANUAL">Manual</option>
+                <option value="PNEUMATICA">Pneumática</option>
+                <option value="HIDRAULICA">Hidráulica</option>
+                <option value="OUTRO">Outro</option>
+            </select>
+            <div class="invalid-feedback" th:errors="*{tipoFerramenta}">Mensagem de erro</div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="classificacaoFerramenta" class="form-label">Classificação <span class="req">*</span></label>
+            <select id="classificacaoFerramenta" class="form-select"
+                    th:classappend="${#fields.hasErrors('classificacaoFerramenta')} ? ' is-invalid'"
+                    th:field="*{classificacaoFerramenta}" required>
+                <option value="">Selecione...</option>
+                <option value="PROFISSIONAL">Profissional</option>
+                <option value="HOBBY">Hobby</option>
+                <option value="INDUSTRIAL">Industrial</option>
+                <option value="DOMESTICA">Doméstica</option>
+            </select>
+            <div class="invalid-feedback" th:errors="*{classificacaoFerramenta}">Mensagem de erro</div>
+        </div>
+
+        <div class="col-md-3">
+            <label for="tamanhoFerramenta" class="form-label">Tamanho</label>
+            <input id="tamanhoFerramenta" type="number" step="0.01" min="0" class="form-control"
+                   th:classappend="${#fields.hasErrors('tamanhoFerramenta')} ? ' is-invalid'"
+                   th:field="*{tamanhoFerramenta}" placeholder="Ex.: 25.0" />
+            <div class="invalid-feedback" th:errors="*{tamanhoFerramenta}">Mensagem de erro</div>
+        </div>
+
+        <div class="col-md-3">
+            <label for="precoFerramenta" class="form-label">Preço (R$) <span class="req">*</span></label>
+            <input id="precoFerramenta" type="number" step="0.01" min="0" class="form-control"
+                   th:classappend="${#fields.hasErrors('precoFerramenta')} ? ' is-invalid'"
+                   th:field="*{precoFerramenta}" placeholder="Ex.: 199.90" required />
+            <div class="invalid-feedback" th:errors="*{precoFerramenta}">Mensagem de erro</div>
+        </div>
+
+        <div class="col-12 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a class="btn btn-outline-secondary" th:href="@{/ferramentas}">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

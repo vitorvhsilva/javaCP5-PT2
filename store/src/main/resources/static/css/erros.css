@@ -1,0 +1,121 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body.auth {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  margin: 0;
+  color: #4b367d;
+}
+
+.card {
+  background: #f7f2ff;
+  width: min(420px, 92vw);
+  padding: 24px 20px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  color: #4b367d;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 1.6rem;
+  color: #6f4fff;
+}
+
+label {
+  display: block;
+  margin: 12px 0 4px;
+  font-weight: 600;
+  font-size: .95rem;
+  color: #7a5fff;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #bfa3ff;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #4b367d;
+  outline: none;
+  font-size: .95rem;
+  transition: all 0.15s ease;
+}
+
+input::placeholder,
+select option[value=""] {
+  color: #a18fff;
+}
+
+input:focus,
+select:focus {
+  border-color: #8f4fff;
+  box-shadow: 0 0 0 4px rgba(143,79,255,.25);
+  background: #f2e6ff;
+}
+
+select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #8f4fff 50%),
+                    linear-gradient(135deg, #8f4fff 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+                       calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  color: #4b367d;
+}
+
+select:hover {
+  border-color: #a87fff;
+}
+
+button {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #8f4fff;
+  color: #ffffff;
+  transition: filter .12s ease, transform .02s ease;
+}
+button:hover {
+  filter: brightness(1.05);
+}
+button:active {
+  transform: translateY(1px);
+}
+
+.alert {
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 8px 0;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+.alert.success {
+  background: rgba(143,79,255,0.15);
+  color: #6f4fff;
+}
+.alert.error {
+  background: rgba(255,96,96,0.15);
+  color: #ff4f4f;
+}
+
+.hint {
+  margin-top: 14px;
+  font-size: .95rem;
+  text-align: center;
+  color: #7a5fff;
+}

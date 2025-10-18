@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ferramentas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/ferramenta.css}"/>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 m-0">Ferramentas</h1>
+
+        <div class="d-flex align-items-center" style="gap:10px;">
+            <a class="btn btn-primary" th:href="@{/ferramentas/novo}">+ Nova Ferramenta</a>
+
+            <!-- Logout (POST /logout com CSRF) -->
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <input type="hidden" th:if="${_csrf != null}"
+                       th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <button type="submit" class="btn btn-outline-secondary">Sair</button>
+            </form>
+        </div>
+    </div>
+
+    <div th:if="${mensagem}" class="alert alert-success" th:text="${mensagem}"></div>
+    <div th:if="${erro}" class="alert alert-danger" th:text="${erro}"></div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead>
+            <tr>
+                <th style="width:18%">ID</th>
+                <th>Nome</th>
+                <th style="width:12%">Tipo</th>
+                <th style="width:16%">Classificação</th>
+                <th style="width:12%">Tamanho</th>
+                <th style="width:12%">Preço (R$)</th>
+                <th style="width:18%" class="text-end">Ações</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="i : ${ferramentas}">
+                <td class="code small" th:text="${i.idFerramenta}">UUID</td>
+                <td th:text="${i.nomeFerramenta}">Nome da Ferramenta</td>
+                <td th:text="${i.tipoFerramenta}">TIPO</td>
+                <td th:text="${i.classificacaoFerramenta}">CLASSIF</td>
+                <td th:text="${i.tamanhoFerramenta}">TAMANHO</td>
+                <td th:text="${#numbers.formatDecimal(i.precoFerramenta, 1, 'COMMA', 2, 'POINT')}">0,00</td>
+                <td class="text-end actions">
+                    <a class="btn btn-sm btn-outline-primary me-1"
+                       th:href="@{|/ferramentas/editar/${i.idFerramenta}|}">Editar</a>
+
+                    <form class="d-inline"
+                          th:action="@{/ferramentas/excluir/{id}(id=${i.idFerramenta})}"
+                          method="post"
+                          onsubmit="return confirm('Confirma excluir este ferramenta?');">
+                        <input type="hidden" th:if="${_csrf != null}"
+                               th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+
+            <tr th:if="${ferramentas == null or #lists.isEmpty(ferramentas)}">
+                <td colspan="7" class="text-center text-muted py-4">
+                    Nenhum ferramenta cadastrada.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
