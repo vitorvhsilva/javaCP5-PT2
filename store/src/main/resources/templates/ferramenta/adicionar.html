@@ -26,7 +26,7 @@
             <label for="nomeFerramenta" class="form-label">Nome <span class="req">*</span></label>
             <input id="nomeFerramenta" type="text" class="form-control"
                    th:classappend="${#fields.hasErrors('nomeFerramenta')} ? ' is-invalid'"
-                   th:field="*{nomeFerramenta}" placeholder="Ex.: Furadeira Bosch 600W" required />
+                   th:field="*{nomeFerramenta}" required />
             <div class="invalid-feedback" th:errors="*{nomeFerramenta}">Mensagem de erro</div>
         </div>
 
@@ -60,10 +60,10 @@
         </div>
 
         <div class="col-md-3">
-            <label for="tamanhoFerramenta" class="form-label">Tamanho</label>
+            <label for="tamanhoFerramenta" class="form-label">Tamanho <span class="req">*</span></label>
             <input id="tamanhoFerramenta" type="number" step="0.01" min="0" class="form-control"
                    th:classappend="${#fields.hasErrors('tamanhoFerramenta')} ? ' is-invalid'"
-                   th:field="*{tamanhoFerramenta}" placeholder="Ex.: 25.0" />
+                   th:field="*{tamanhoFerramenta}" required/>
             <div class="invalid-feedback" th:errors="*{tamanhoFerramenta}">Mensagem de erro</div>
         </div>
 
@@ -71,7 +71,7 @@
             <label for="precoFerramenta" class="form-label">Preço (R$) <span class="req">*</span></label>
             <input id="precoFerramenta" type="number" step="0.01" min="0" class="form-control"
                    th:classappend="${#fields.hasErrors('precoFerramenta')} ? ' is-invalid'"
-                   th:field="*{precoFerramenta}" placeholder="Ex.: 199.90" required />
+                   th:field="*{precoFerramenta}" required />
             <div class="invalid-feedback" th:errors="*{precoFerramenta}">Mensagem de erro</div>
         </div>
 

@@ -54,4 +54,9 @@ public class UsuarioService implements UserDetailsService {
 
         return repo.save(u);
     }
+
+    public Usuario buscarPorEmail(String email) {
+        return repo.findByEmailUsuario(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
+    }
 }

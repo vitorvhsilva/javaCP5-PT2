@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "TB_TDS_CP5_USUARIO")
@@ -39,4 +41,6 @@ public class Usuario {
     @Column(name="CREATED_AT", nullable=false)
     private LocalDateTime criadoEm = LocalDateTime.now();
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ferramenta> ferramentas = new ArrayList<>();
 }

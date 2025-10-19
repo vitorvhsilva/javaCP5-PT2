@@ -34,4 +34,8 @@ public class Ferramenta {
 
     @Column(name = "PRECO_FERRAMENTA", nullable = false, length = 50)
     private double precoFerramenta;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_USUARIO", nullable = false)
+    private Usuario usuario;
 }
